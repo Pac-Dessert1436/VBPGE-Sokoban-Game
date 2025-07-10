@@ -1,0 +1,153 @@
+%YAML 1.2
+---
+# Sokoban Level Definitions
+# Symbols:
+# 'w'  = wall
+# 'p'  = player
+# 'b'  = box
+# 'g'  = goal/target
+# 'B'  = box on target
+# '~'  = walkable terrain (null)
+Opening:
+- &wall  [w, w, w, w, w, w, w, w, w]  # Wall boundary
+- &space [w, ~, ~, ~, ~, ~, ~, ~, w]  # Walkable row template
+- *space
+- [w, ~, p, ~, b, ~, g, ~, w]      # Player, box, and target
+- *space
+- *space
+- *wall
+
+Floor 1:
+- *wall
+- *space
+- [w, ~, b, ~, ~, ~, ~, ~, w]      
+- [w, ~, w, b, p, ~, g, ~, w]
+- [w, ~, ~, ~, ~, ~, g, ~, w]
+- *space
+- *wall
+
+Floor 2:
+- *wall
+- [w, ~, ~, ~, w, g, b, ~, w]
+- [w, ~, b, ~, w, ~, g, ~, w]
+- [w, ~, w, g, p, ~, b, ~, w]
+- [w, ~, ~, w, ~, ~, ~, ~, w]
+- *space
+- *wall
+
+Floor 3:
+- *wall
+- [w, ~, ~, ~, g, ~, ~, ~, w]
+- *space
+- [w, ~, g, w, b, w, ~, ~, w]
+- [w, ~, ~, B, p, b, ~, ~, w]
+- [w, ~, ~, w, ~, w, ~, ~, w]
+- *wall
+
+Floor 4:
+- *wall
+- [w, ~, ~, ~, g, ~, ~, ~, w]
+- [w, ~, b, ~, ~, ~, b, ~, w]
+- [w, w, ~, b, p, b, ~, w, w]
+- [w, g, ~, ~, ~, ~, ~, g, w]
+- [w, ~, ~, w, g, w, ~, ~, w]
+- *wall
+
+Floor 5:
+- *wall
+- *space
+- [w, g, ~, ~, w, ~, ~, g, w]
+- [w, ~, b, ~, p, ~, b, ~, w]
+- [w, ~, b, ~, w, ~, b, ~, w]
+- [w, g, ~, ~, w, ~, ~, g, w]
+- *wall
+
+Floor 6:
+- &blank [~, ~, ~, ~, ~, ~, ~, ~, ~]  # Added for the new machanism
+- *blank
+- [~, ~, b, ~, p, ~, ~, ~, ~]
+- *blank
+- *wall
+- *blank
+- [~, ~, ~, ~, ~, ~, g, ~, ~]
+
+Floor 7:
+- &mid_w [~, ~, ~, ~, w, ~, ~, ~, ~] # Wall at the middle
+- [~, w, g, ~, w, ~, b, w, ~]
+- *mid_w
+- [~, ~, b, ~, w, ~, g, ~, ~]
+- *mid_w
+- [~, w, g, ~, w, ~, b, p, ~]
+- *mid_w
+
+Floor 8:
+- *mid_w
+- [w, ~, g, ~, w, ~, ~, b, ~]
+- [~, ~, ~, B, ~, ~, p, ~, ~]
+- [~, ~, w, ~, w, w, w, w, w]
+- [~, g, w, b, w, ~, ~, g, ~]
+- [~, w, w, ~, ~, ~, b, ~, ~]
+- *mid_w
+
+Floor 9:
+- *blank
+- [~, ~, g, ~, b, ~, b, b, ~]
+- [~, ~, ~, ~, p, ~, ~, ~, ~]
+- *wall
+- *blank
+- [~, g, g, ~, g, ~, b, ~, ~]
+- *blank
+
+Floor 10:
+- *mid_w
+- [w, ~, g, ~, p, ~, b, ~, w]
+- [w, ~, w, w, w, ~, ~, ~, w]
+- [w, ~, b, ~, B, ~, g, ~, w]
+- [w, ~, ~, ~, w, w, w, ~, w]
+- [w, ~, g, ~, ~, ~, b, ~, w]
+- *mid_w
+
+Floor 11:
+- *wall
+- [~, w, g, ~, ~, ~, b, ~, ~]
+- *blank
+- [~, b, w, b, B, ~, g, ~, ~]
+- *mid_w
+- [~, b, ~, g, w, ~, g, p, ~]
+- *wall
+
+Floor 12:
+- *space
+- [~, ~, g, w, b, w, g, ~, ~]
+- [~, w, w, w, ~, w, w, w, ~]
+- [~, ~, b, ~, p, ~, b, ~, ~]
+- [~, w, w, w, ~, w, w, w, ~]
+- [~, ~, g, w, b, w, g, ~, ~]
+- *space
+
+Floor 13:
+- *space
+- [w, ~, g, b, w, ~, b, w, w]
+- [w, ~, ~, ~, g, ~, ~, ~, w]
+- [w, ~, b, ~, b, ~, g, ~, w]
+- [w, ~, ~, ~, g, ~, ~, ~, w]
+- [w, w, g, ~, w, ~, b, p, w]
+- *space
+
+Floor 14:
+- *blank
+- [w, ~, g, b, B, ~, w, ~, w]
+- *space
+- [w, ~, w, ~, B, b, g, ~, w]
+- *space
+- [w, ~, g, b, B, ~, w, p, w]
+- *blank
+
+Floor 15:
+- *wall
+- [w, ~, B, ~, w, ~, g, ~, w]
+- *space
+- [w, ~, w, ~, p, ~, B, ~, w]
+- [w, ~, ~, ~, ~, ~, b, ~, w]
+- [w, ~, g, ~, b, ~, ~, ~, w]
+- *wall
