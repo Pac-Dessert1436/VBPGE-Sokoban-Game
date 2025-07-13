@@ -245,7 +245,7 @@ Public NotInheritable Class Program
                       End Sub)
         End If
 
-        Static upperText As String, lowerText As String
+        Static firstLine As String, secondLine As String
         Select Case floor
             Case -1
                 DrawString(10, 10, "CONGRATULATIONS!", Presets.Yellow, 2)
@@ -258,14 +258,14 @@ Public NotInheritable Class Program
                 DrawString(10, 195, "Arrow keys to move, ""R"" to restart the", Presets.White)
                 DrawString(10, 210, "level, and ""ESC"" to exit at any time.", Presets.White)
                 If levelCompleted Then
-                    upperText = "Great! Let's begin the adventure!"
-                    lowerText = MoveCountInfo(False)
+                    firstLine = "Great! Let's begin the adventure!"
+                    secondLine = MoveCountInfo(False)
                 Else
-                    upperText = "Welcome to the Sokoban game!"
-                    lowerText = "Push the box to the target to begin."
+                    firstLine = "Welcome to the Sokoban game!"
+                    secondLine = "Push the box to the target to begin."
                 End If
             Case Else
-                lowerText = MoveCountInfo(False)
+                secondLine = MoveCountInfo(False)
 
                 If floor = 6 AndAlso Not levelCompleted Then
                     ' Provide new hints for players at Floor 6, because levels after Floor 5
@@ -275,16 +275,16 @@ Public NotInheritable Class Program
                     DrawString(10, 223, "opposite side; the boxes too.", Presets.White)
                 End If
                 If levelCompleted AndAlso floor + 1 > TotalFloors Then
-                    upperText = "Excellent! Finishing the game."
+                    firstLine = "Excellent! Finishing the game."
                 ElseIf levelCompleted Then
-                    upperText = $"Excellent! Heading to Floor {floor + 1}."
+                    firstLine = $"Excellent! Heading to Floor {floor + 1}."
                 Else
-                    upperText = $"You're now at Floor {floor} of {TotalFloors}"
+                    firstLine = $"You're now at Floor {floor} of {TotalFloors}"
                 End If
         End Select
         If floor >= 0 Then
-            DrawString(10, 10, upperText, Presets.White)
-            DrawString(10, 30, lowerText, Presets.White)
+            DrawString(10, 10, firstLine, Presets.White)
+            DrawString(10, 30, secondLine, Presets.White)
         End If
 
         Return Not GetKey(Key.ESCAPE).Pressed
