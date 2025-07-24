@@ -25,16 +25,18 @@ Public NotInheritable Class Program
     Private ReadOnly floorTiles As New List(Of Vi2d)
     Private levelCompleted As Boolean = False
 
-    ' Audio implementation
     Public Class AudioSource
         Private ReadOnly reader As AudioFileReader
-        Public waveOut As WaveOutEvent
+        Private ReadOnly waveOut As WaveOutEvent
         Private isLooping As Boolean = False
 
         Public Sub New(filename As String)
             reader = New AudioFileReader(filename)
             waveOut = New WaveOutEvent
             waveOut.Init(reader)
+            ' This is the looping mechanism for the audio source, which will not be
+            ' applied when the audio is played once.
+            AddHandler waveOut.PlaybackStopped, AddressOf OnPlaybackStopped
         End Sub
 
         Public Sub PlayOnce()
@@ -60,7 +62,7 @@ Public NotInheritable Class Program
             End If
         End Sub
 
-        Public Sub OnPlaybackStopped(sender As Object, e As StoppedEventArgs)
+        Private Sub OnPlaybackStopped(sender As Object, e As StoppedEventArgs)
             If isLooping AndAlso waveOut IsNot Nothing Then
                 reader.Position = 0
                 waveOut.Play()
@@ -74,10 +76,6 @@ Public NotInheritable Class Program
 
     Protected Overrides Function OnUserCreate() As Boolean
         SetPixelMode(Pixel.Mode.Mask)
-        ' Initialize the looping machanism for the main theme
-        With bgmMainTheme
-            AddHandler .waveOut.PlaybackStopped, AddressOf .OnPlaybackStopped
-        End With
 
         ' Load level data
         With (New DeserializerBuilder).WithoutNodeTypeResolver(Of TagNodeTypeResolver).Build()
