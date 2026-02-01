@@ -34,7 +34,7 @@ Public NotInheritable Class Program
             reader = New AudioFileReader(filename)
             waveOut = New WaveOutEvent
             waveOut.Init(reader)
-            ' This is the looping mechanism for the audio source, which will not be
+            ' This is the looping mechanic for the audio source, which will not be
             ' applied when the audio is played once.
             AddHandler waveOut.PlaybackStopped, AddressOf OnPlaybackStopped
         End Sub
@@ -67,6 +67,18 @@ Public NotInheritable Class Program
                 reader.Position = 0
                 waveOut.Play()
             End If
+        End Sub
+
+        Protected Overrides Sub Finalize()
+            Try
+                If waveOut IsNot Nothing Then
+                    RemoveHandler waveOut.PlaybackStopped, AddressOf OnPlaybackStopped
+                End If
+                waveOut?.Dispose()
+                reader?.Dispose()
+            Finally
+                MyBase.Finalize()
+            End Try
         End Sub
     End Class
 
@@ -268,7 +280,7 @@ Public NotInheritable Class Program
                 If floor = 6 AndAlso Not levelCompleted Then
                     ' Provide new hints for players at Floor 6, because levels after Floor 5
                     ' will make full use of position wrapping.
-                    DrawString(10, 193, "NEW MECHANISM: SCREEN WRAPPING!", Presets.Cyan)
+                    DrawString(10, 193, "NEW MECHANIC: SCREEN WRAPPING!", Presets.Cyan)
                     DrawString(10, 208, "Moving off an edge brings you to the", Presets.White)
                     DrawString(10, 223, "opposite side; the boxes too.", Presets.White)
                 End If

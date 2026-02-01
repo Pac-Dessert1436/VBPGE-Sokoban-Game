@@ -4,7 +4,7 @@
 
 ## Overview
 
-This is a modern implementation of the classic Sokoban puzzle game, developed with VB.NET and the `vbPixelGameEngine`. This mini-game project offers multiple levels of increasing complexity, a screen wrapping mechanism, and refined audio-visual feedback.
+This is a modern implementation of the classic Sokoban puzzle game, developed with VB.NET and the `vbPixelGameEngine`. This mini-game project offers multiple levels of increasing complexity, a screen wrapping mechanic, and refined audio-visual feedback.
 
 The background music and sound effects are sourced from *The Tower of Druaga* and several other old-school video games. Moreover, the level design data is stored in a YAML file, and it is placed in the "Assets" folder, along with the game sprites and audio files.
 
@@ -49,7 +49,11 @@ cd VBPGE-Sokoban-Game
 You can open the solution in Visual Studio and run the project. Alternatively, you can compile the game using the following commands:
 ```bash
 msbuild "VBPGE Sokoban Game.sln"
-./bin/Debug/net9.0/"VBPGE Sokoban Game.exe"
+./bin/Debug/net10.0/"VBPGE Sokoban Game.exe"
+
+# or if you don't have `msbuild` installed:
+dotnet build
+dotnet run
 ```
 
 ## Special Thanks
